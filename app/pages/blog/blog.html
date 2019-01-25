@@ -1,0 +1,30 @@
+<div class="sub-nav">
+    <div class="row no-margin-right">
+        <div class="col-md-8">
+            <div class="sub-header">Blog</div>
+        </div>
+        <div class="col-md-4">
+            <select name="languages" ng-change="getLanguage()" ng-model="languageSelected" class="form-control languages">
+                <option selected value="">Language</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+            </select><br /><br />
+        </div>
+    </div>
+</div>
+
+<div class="scroll-container" when-scrolled='loadMore()'>
+    <div ng-repeat='d in data track by d.id' class="block">
+        <div class="row no-margin-right">
+            <div class="col-md-10">
+                <h3><a href="https://healthcare.gov{{::d.url}}" target="_blank">{{::d.title}}</a></h3>
+            </div>
+            <div class="col-md-2">
+                <div class="date">{{::getDate(d.date) | date: 'MM/dd/yyyy'}}</div>
+            </div>
+        </div>
+        <div class="categories">in {{::parseCategoriesArray(d.categories)}}</div>
+        <p class="text-content">{{::d.content}}</p>
+    </div>
+</div>
+<div show-during-resolve class="loading-spinner"></div>

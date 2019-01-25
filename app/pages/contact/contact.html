@@ -1,0 +1,87 @@
+<div class="col-md-5 contact-form-format">
+
+  <div>
+    <p class="contact-sub-header">Contact Us</p>
+  </div>
+  <div>
+    <form name="contactForm" ng-submit="submitForm(contactForm.$valid)" novalidate>
+      <div>
+        <div class="col-md-7">
+          <div class="error" ng-show="contactForm.name.$error.required && !contactForm.name.$pristine">
+            Required!
+          </div>
+          <input class="form-control" type="text" placeholder="Name" name="name" ng-model="name" ng-required="true">
+        </div>
+        <div class="col-md-5">
+
+        </div>
+
+      </div>
+
+      <div>
+        <div class="col-md-7">
+          <div>
+            <span class="error" ng-show="contactForm.email.$error.required && !contactForm.email.$pristine">
+              Required!
+            </span>
+            <span class="error" ng-show="contactForm.email.$invalid && !contactForm.email.$pristine">
+              Invalid Email!
+            </span>
+          </div>
+          <input class="form-control" type="email" placeholder="Email Address" name="email" ng-model="mail" ng-required="true"
+            ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/">
+        </div>
+
+        <div class="col-md-5">
+          <div class="error" ng-show="contactForm.reazon.$invalid && !contactForm.reazon.$pristine">
+            Required!
+          </div>
+          <select class="form-control" ng-required="true" ng-options="option.value as option.text for option in options"
+            ng-model="reazon" name="reazon">
+            <option value="">Reason for contact</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="error" ng-show="contactForm.message.$invalid && !contactForm.message.$pristine">
+          Required!
+        </div>
+        <textarea class="form-control" class="message-textarea" placeholder="Message" ng-required="true" name="message"
+          ng-model="message"></textarea>
+      </div>
+      <div>
+        <div class="col-md-8">
+
+        </div>
+        <div class="col-md-4">
+          <input class="btn submit" type="submit" value="Submit" />
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<div class="col-md-7">
+
+</div>
+
+<div id="alert" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Alert</h4>
+        </div>
+        <div class="modal-body">
+          <p id="alert-body"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  
+<div show-during-resolve class="loading-spinner"></div>

@@ -1,0 +1,236 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  /*border-bottom: 0.1em solid black;*/
+ /* margin-bottom: 2em;*/
+  padding: 1em;
+  margin-left:5rem; 
+  position: relative;
+  top: 1rem;
+}
+
+.menu:before {
+ /* content: "[";*/
+}
+
+.menu:after {
+  /*content: "]";*/
+}
+
+.menu li a{
+  color: #575757;
+}
+
+.menu > li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+.menu > li + li:before {
+ /* content: "|";*/
+  padding-right: 0.5em;
+}
+
+.nav{
+  background-color: #d8d8d8;
+  border-bottom: 1px #979797 solid
+}
+
+.sub-nav{
+  background-color: #c6c6c6;
+  border-bottom: 1px #979797 solid
+}
+
+
+
+.error {
+  color: red;
+  font-size: 10px;
+  margin: 0.5rem;
+}
+
+.message-textarea{
+  min-width: 400px;
+  min-height: 200px;
+}
+
+.header-text{
+  margin-left: 5rem;
+  margin-bottom: 2rem;
+
+}
+
+.header-text a{
+  color: #000000;
+}
+
+.sub-header{
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-left: 10rem;
+}
+
+.block{
+  padding: 3rem;
+}
+
+.block a {
+  color: #575757;
+}
+
+.block .date {
+  margin-top: 2.5rem;;
+}
+
+.block .categories{
+  font-size: 12px;
+  font-style: italic;
+  color: #5d5d5d;
+  margin-left: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.block .text-content{
+  color: black;
+}
+
+.block .glossary-header-text{
+  font-weight: bolder
+}
+
+.languages{
+  position: relative;
+  top: 3rem;
+  margin-left: 1rem;
+  max-width: 30rem;
+}
+
+.languages-glossary{
+  position: relative;
+  top: 2rem;
+  margin-left: 1rem;
+  max-width: 30rem;
+}
+
+.search-form{
+  position: relative;
+  top: 2rem;
+  left: 8.5rem;
+}
+
+
+.search-form input{
+  min-width: 30rem;
+}
+
+.search-form button{
+  min-width: 10rem;
+  box-shadow: 3px 3px 11px -2px #888888;
+  background-color: #c0c0c0;
+  border: 1px solid #9a9a9a;
+}
+
+.no-margin-right{
+  margin-right: 0px !important;
+}
+
+.scroll-container{
+  height: 600px; 
+  overflow: auto;
+}
+
+
+.scroll-container::-webkit-scrollbar {
+  width: 0.6em;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+}
+
+.contact-form-format input, .contact-form-format textarea{
+  margin-bottom: 3rem;
+}
+.contact-form-format textarea{
+  margin-bottom: 3rem;
+  min-height: 20rem;
+}
+
+.contact-form-format .submit{
+  /*min-width: 12rem;*/
+  width: 100%;
+  min-height: 4rem;
+  box-shadow: 3px 3px 11px -2px #888888;
+  background-color: #c0c0c0;
+  border: 1px solid #9a9a9a;
+}
+
+.contact-sub-header{
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  margin-left: 1.5rem;
+}
+
+/*Spinner*/
+
+.loading-spinner {
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  opacity: 1;
+  position: absolute;
+  top: 56%;
+  left: 50%;
+}
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.loading-spinner.-paused {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+  opacity: 0.2;
+  transition: opacity linear 0.1s;
+}
+.loading-spinner::before {
+  -webkit-animation: 1.5s linear infinite spinner;
+          animation: 1.5s linear infinite spinner;
+  -webkit-animation-play-state: inherit;
+          animation-play-state: inherit;
+  border: solid 3px #dedede;
+  border-bottom-color: #EF6565;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  width: 40px;
+  will-change: transform;
+}
