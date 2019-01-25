@@ -17,7 +17,7 @@ To run the app on your local, in the console run:
 npm start
 ```
 
-### Run the unit test (karma jasmin)
+### Run the unit test (karma jasmine)
 
 ```
 npm run test-single-run
