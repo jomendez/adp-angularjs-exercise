@@ -26,10 +26,11 @@
   <br />
 </div>
 
-<div  class="scroll-container" when-scrolled='loadMore()'>
+<div class="scroll-container" when-scrolled='loadMore()'>
 
   <div ng-repeat='d in data track by d.id' class="block">
     <div class="row">
+      <!-- Use {{:: }} one time bindin syntaxt to improve performance -->
       <h3 class="glossary-header-text"><a href="https://healthcare.gov{{::d.url}}" target="_blank">{{::d.title}}</a></h3>
       <p class="text-content" ng-bind-html="printHtml(d.content)"></p>
     </div>

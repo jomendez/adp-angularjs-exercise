@@ -14,8 +14,8 @@ angular.module('adpExercise.glossary', ['ngRoute'])
     });
   }])
 
-  .controller('glossaryCtrl', ['$scope', 'resolvedData', '$sce', 'compareServices', '$filter',
-    function ($scope, resolvedData, $sce, compareServices, $filter) {
+  .controller('glossaryCtrl', ['$scope', 'resolvedData', '$sce', 'compareServices', '$filter', 'dataUtils',
+    function ($scope, resolvedData, $sce, compareServices, $filter, dataUtils) {
 
       //added id property to the data collection to be able to do track by on the ng-repeat (improve performance)
       //Note: change language doesn't work when sing track by $index 
@@ -24,36 +24,11 @@ angular.module('adpExercise.glossary', ['ngRoute'])
         return val;
       });
       const numberOfPostPerPages = 5;
-      var allData = [];
-
-      $scope.printHtml = function (html) {
-        return $sce.trustAsHtml(html);
-      }
-
-      var loadInitialData = function (allData) {
-        if (!!allData && allData.length > 0) {
-          //this syntax is used to copy the sorted array by value instead of by reference, 
-          //we could use [... ] the spread operator to achieve the same, but it is not supported by internet Explorer 
-          //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
-          allData = JSON.parse(JSON.stringify(allData.sort(compareServices.compareTitle)));
-
-          return allData.slice(0, numberOfPostPerPages);//slice also copy by value
-        }
-      }
-
-      var restartData = function () {
-        allData = datasource.sort(compareServices.compareTitle);
-        $scope.data = loadInitialData(allData);
-      }
-
-      restartData();//get all the data from the api when controller is loaded
+      var allData = datasource.sort(compareServices.compareTitle);
+      $scope.data = compareServices.loadInitialData(allData, compareServices.compareTitle);
 
       $scope.loadMore = function () {
-        if (allData && $scope.data) {
-          var last = $scope.data.length;
-          var temp = allData.slice(last, last + numberOfPostPerPages);
-          $scope.data = $scope.data.concat(temp);
-        }
+        $scope.data = dataUtils.loadMore(allData, $scope.data, numberOfPostPerPages);
       };
 
 
@@ -62,13 +37,15 @@ angular.module('adpExercise.glossary', ['ngRoute'])
         $scope.search = '';
         if (!!$scope.languageSelected) {
           allData = datasource.sort(compareServices.compareTitle);
-          
+
           allData = allData.filter(function (x) {
             return x.lang == $scope.languageSelected;
           });
-          $scope.data = loadInitialData(allData);
+          $scope.data = compareServices.loadInitialData(allData, compareServices.compareTitle);
         } else {
-          restartData();
+
+          allData = datasource.sort(compareServices.compareTitle);
+          $scope.data = compareServices.loadInitialData(allData, compareServices.compareTitle);
         }
       }
 
@@ -77,13 +54,18 @@ angular.module('adpExercise.glossary', ['ngRoute'])
         $scope.languageSelected = '';
 
         //restar the data in allData var
-        restartData();
+        allData = datasource.sort(compareServices.compareTitle);
+        $scope.data = compareServices.loadInitialData(allData, compareServices.compareTitle);
         if (!$scope.search) {
           return;
         }
 
         allData = [...$filter('filter')(allData, $scope.search)];//copy by value
-        $scope.data = loadInitialData(allData);
+        $scope.data = compareServices.loadInitialData(allData, compareServices.compareTitle);
+      }
+
+      $scope.printHtml = function (html) {
+        return $sce.trustAsHtml(html);
       }
 
     }]);

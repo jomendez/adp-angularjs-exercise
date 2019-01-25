@@ -14,7 +14,7 @@ angular.module('adpExercise.blog', ['ngRoute', 'myServices'])
     });
   }])
 
-  .controller('blogCtrl', ['$scope', 'resolvedData', 'compareServices', function ($scope, resolvedData, compareServices) {
+  .controller('blogCtrl', ['$scope', 'resolvedData', 'compareServices', 'dataUtils', function ($scope, resolvedData, compareServices, dataUtils) {
 
     //added id property to the data collection to be able to do track by on the ng-repeat (improve performance)
     //Note: change language doesn't work when sing track by $index 
@@ -23,29 +23,11 @@ angular.module('adpExercise.blog', ['ngRoute', 'myServices'])
       return val;
     });
     const numberOfPostPerPages = 5;
-    var allData = [];
-
-
-    var loadInitialData = function (allData) {
-      if (!!allData && allData.length > 0) {
-        allData = JSON.parse(JSON.stringify(allData.sort(compareServices.compareDate)));
-        $scope.data = allData.slice(0, numberOfPostPerPages);
-      }
-    }
-
-    var restartData = function () {
-      allData = datasource.sort(compareServices.compareDate);
-      loadInitialData(allData);
-    }
-
-    restartData();//get all the data from the api when controller is loaded
+    var allData = datasource.sort(compareServices.compareDate);
+    $scope.data = compareServices.loadInitialData(allData, compareServices.compareDate);//get all the data from the api when controller is loaded
 
     $scope.loadMore = function () {
-      if (allData && $scope.data) {
-        var last = $scope.data.length;
-        var temp = allData.slice(last, last + numberOfPostPerPages);
-        $scope.data = $scope.data.concat(temp);
-      }
+      $scope.data = dataUtils.loadMore(allData, $scope.data, numberOfPostPerPages);
     };
 
 
@@ -57,9 +39,10 @@ angular.module('adpExercise.blog', ['ngRoute', 'myServices'])
           return x.lang == $scope.languageSelected;
         });
 
-        loadInitialData(allData);
+        $scope.data = compareServices.loadInitialData(allData, compareServices.compareDate);
       } else {
-        restartData();
+        allData = datasource.sort(compareServices.compareDate);
+        $scope.data = compareServices.loadInitialData(allData, compareServices.compareDate);//get all the data from the api when controller is loaded    
       }
     }
 

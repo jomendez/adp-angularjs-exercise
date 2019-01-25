@@ -12,7 +12,7 @@ describe('adpExercise.blog module', function () {
       module(function ($provide) {
         $provide.service('resolvedData', function () {
           // Mocking resolvedData
-          this.data 
+          this.data
           var obj = {};
           obj.blog = [];
           obj.blog.push(JSON.parse(`{"categories":["es","blog"],"title":"3 formas para usar una nueva cobertura del Mercado","lang":"es","date":"2019-01-17 00:00:00 -0500","url":"/es/blog/3-ways-use-2019-marketplace-coverage/","content":"Descriprion","id":0}`));
@@ -21,6 +21,18 @@ describe('adpExercise.blog module', function () {
 
         $provide.service('compareServices', function () {
           // Mocking compareServices
+          this.loadInitialData = function (allData, compare) {
+
+          }
+        });
+
+        $provide.service('dataUtils', function () {
+          // Mocking compareServices
+          var loadMore = function (allData, data, numberOfPostPerPages) {
+            return {
+              loadMore: loadMore
+            }
+          }
         });
       });
     });

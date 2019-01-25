@@ -9,25 +9,12 @@ angular.module('adpExercise.contact', ['ngRoute'])
     });
   }])
 
-  .controller('contactCtrl', ['$scope', function ($scope) {
+  .controller('contactCtrl', ['$scope', 'contactUtils', function ($scope, contactUtils) {
 
-    $scope.options = [
-      {value:'HealthcareMarketplace', text:'Healthcare Marketplace'},
-      {value:'TechnicalSupport', text:'Technical Support'},
-      {value:'WebsiteFeedback', text:'Website Feedback'},
-    ];
+    $scope.options = contactUtils.options;
 
     $scope.submitForm = function (isValid) {
-
-      // check to make sure the form is completely valid
-      if (isValid) {
-        $('#alert #alert-body').text('This form is valid');
-        $('#alert').modal('show');
-      }else{
-       $('#alert #alert-body').text('This form is invalid');
-       $('#alert').modal('show');
-      }
-
+     contactUtils.submitForm(isValid); 
     };
 
   }]);
