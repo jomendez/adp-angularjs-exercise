@@ -17,7 +17,11 @@
     <div ng-repeat='d in data track by d.id' class="block">
         <div class="row no-margin-right">
             <div class="col-md-10">
-                <h3><a href="https://healthcare.gov{{::d.url}}" target="_blank">{{::d.title}}</a></h3>
+                <h3>
+                    <a href="https://healthcare.gov{{::d.url}}" target="_blank">
+                        <strong>{{::d.title}}</strong>
+                    </a>
+                </h3>
             </div>
             <div class="col-md-2">
                 <div class="date">{{::getDate(d.date) | date: 'MM/dd/yyyy'}}</div>
