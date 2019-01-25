@@ -37,13 +37,13 @@ angular.module('adpExercise.glossary', ['ngRoute'])
           //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
           allData = JSON.parse(JSON.stringify(allData.sort(compareServices.compareTitle)));
 
-          $scope.data = allData.slice(0, numberOfPostPerPages);//slice also copy by value
+          return allData.slice(0, numberOfPostPerPages);//slice also copy by value
         }
       }
 
       var restartData = function () {
         allData = datasource.sort(compareServices.compareTitle);
-        loadInitialData(allData);
+        $scope.data = loadInitialData(allData);
       }
 
       restartData();//get all the data from the api when controller is loaded
@@ -66,7 +66,7 @@ angular.module('adpExercise.glossary', ['ngRoute'])
           allData = allData.filter(function (x) {
             return x.lang == $scope.languageSelected;
           });
-          loadInitialData(allData);
+          $scope.data = loadInitialData(allData);
         } else {
           restartData();
         }
@@ -83,7 +83,7 @@ angular.module('adpExercise.glossary', ['ngRoute'])
         }
 
         allData = [...$filter('filter')(allData, $scope.search)];//copy by value
-        loadInitialData(allData);
+        $scope.data = loadInitialData(allData);
       }
 
     }]);
