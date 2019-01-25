@@ -1,12 +1,12 @@
 'use strict';
 
 // Declare app level module which depends on views, and core components
-angular.module('myApp', [
+angular.module('adpExercise', [
   'ngRoute',
   'myServices',
-  'myApp.blog',
-  'myApp.contact',
-  'myApp.glossary',
+  'adpExercise.blog',
+  'adpExercise.contact',
+  'adpExercise.glossary',
 ]).
 config(['$locationProvider', '$routeProvider', '$compileProvider', function($locationProvider, $routeProvider, $compileProvider) {
   $locationProvider.hashPrefix('!');

@@ -1,9 +1,9 @@
 'use strict';
 
-describe('myApp.glossary module', function () {
+describe('adpExercise.glossary module', function () {
   var $controller, $rootScope;
 
-  beforeEach(module('myApp.glossary'));
+  beforeEach(module('adpExercise.glossary'));
 
   beforeEach(inject(function (_$controller_, _$rootScope_) {
     // The injector unwraps the underscores (_) from around the parameter names when matching

@@ -1,4 +1,4 @@
-angular.module('myApp')
+angular.module('adpExercise')
 .directive('whenScrolled', function() {
     return function(scope, elm, attr) {
         var raw = elm[0];

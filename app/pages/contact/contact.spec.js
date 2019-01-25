@@ -1,8 +1,8 @@
 'use strict';
 
-describe('myApp.contact module', function () {
+describe('adpExercise.contact module', function () {
 
-  beforeEach(module('myApp.contact'));
+  beforeEach(module('adpExercise.contact'));
   var $controller, $rootScope;
 
   beforeEach(inject(function (_$controller_, _$rootScope_) {

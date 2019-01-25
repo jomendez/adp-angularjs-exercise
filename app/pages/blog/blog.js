@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.blog', ['ngRoute', 'myServices'])
+angular.module('adpExercise.blog', ['ngRoute', 'myServices'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/blog', {
@@ -16,7 +16,9 @@ angular.module('myApp.blog', ['ngRoute', 'myServices'])
 
   .controller('blogCtrl', ['$scope', 'resolvedData', 'compareServices', function ($scope, resolvedData, compareServices) {
 
-    const datasource = resolvedData.data.blog.map(function(val, i){
+    //added id property to the data collection to be able to do track by on the ng-repeat (improve performance)
+    //Note: change language doesn't work when sing track by $index 
+    const datasource = resolvedData.data.blog.map(function (val, i) {
       val.id = i;
       return val;
     });
@@ -51,11 +53,10 @@ angular.module('myApp.blog', ['ngRoute', 'myServices'])
       if (!!$scope.languageSelected) {
         allData = datasource.sort(compareServices.compareDate);
 
-        //usually this filter should be applied in the backend web api
         allData = allData.filter(function (x) {
           return x.lang == $scope.languageSelected;
         });
-        
+
         loadInitialData(allData);
       } else {
         restartData();

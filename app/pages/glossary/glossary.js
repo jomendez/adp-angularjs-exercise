@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.glossary', ['ngRoute'])
+angular.module('adpExercise.glossary', ['ngRoute'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/glossary', {
@@ -63,7 +63,6 @@ angular.module('myApp.glossary', ['ngRoute'])
         if (!!$scope.languageSelected) {
           allData = datasource.sort(compareServices.compareTitle);
           
-          //usually this filter should be applied in the backend web api
           allData = allData.filter(function (x) {
             return x.lang == $scope.languageSelected;
           });
@@ -83,7 +82,7 @@ angular.module('myApp.glossary', ['ngRoute'])
           return;
         }
 
-        allData = [...$filter('filter')(allData, $scope.search)];
+        allData = [...$filter('filter')(allData, $scope.search)];//copy by value
         loadInitialData(allData);
       }
 

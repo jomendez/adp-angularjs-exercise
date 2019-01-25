@@ -1,4 +1,4 @@
-angular.module('myApp')
+angular.module('adpExercise')
     .directive('showDuringResolve', function ($rootScope) {
 
         return {

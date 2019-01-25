@@ -1,13 +1,13 @@
 'use strict';
 
-describe('myApp.blog module', function () {
+describe('adpExercise.blog module', function () {
 
   var $controller, $rootScope;
 
   beforeEach(
     function () {
       angular.module('myServices', []);
-      module('myApp.blog');
+      module('adpExercise.blog');
 
       module(function ($provide) {
         $provide.service('resolvedData', function () {

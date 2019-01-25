@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp.contact', ['ngRoute'])
+angular.module('adpExercise.contact', ['ngRoute'])
 
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/contact', {
